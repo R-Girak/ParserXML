@@ -19,6 +19,8 @@ namespace ParserXML
 
     class ParserLinq
     {
+        #region Fields and Constants
+
         static String XML = @"<Contacts>
                 <Contact>
                     <Name> Patrick Hines </Name>
@@ -64,35 +66,41 @@ namespace ParserXML
                 </Contact>
             </Contacts>";
 
+        #endregion
+
+        #region Methods
+
         public static void FindAndPrint(string namePart) {
                       
             XDocument ob = XDocument.Parse(XML);
             int found = 0;
 
-
             /// <summary>
             /// Create a list of Contact entities and fill fields Name & NetWorth for each
             /// </summary>
-
             var contacts = from x in ob.Descendants("Contact")
                            select new
                            {
                                Name = x.Descendants("Name").First().Value,
-                               NetWorth = x.Descendants("NetWorth").First().Value
+                               NetWorth = x.Descendants("NetWorth").First().Value,
+                               Phone = x.Descendants("Phone").First().Value
                            };
 
             /// <summary>
             /// Find & print matching results
             /// </summary>
-
             foreach (var contact in contacts) {
-                if (contact.Name.Contains(namePart))
+                string[] name = contact.Name.Split(" ");
+
+                if (name[1].ToLower().StartsWith(namePart.ToLower()) || name[2].ToLower().StartsWith(namePart.ToLower()))
                 {
-                    Console.WriteLine("Name:" + contact.Name + "\n" + "NetWorth:" + contact.NetWorth + "\n\n");
+                    Console.WriteLine("Name:" + contact.Name + "\n" + "NetWorth:" + contact.NetWorth + "\n" + "Phone:" + contact.Phone + "\n\n");
                     found++;
                 }
             }
             if (found == 0) Console.WriteLine("Sorry, nothing was found\n");
         }
+
+        #endregion
     }
 }

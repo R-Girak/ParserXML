@@ -17,7 +17,7 @@ namespace ParserXML
     /// Parsing XML using XML Text Reader
     /// </summary>
 
-    class ParserXTR
+    class ParserXmlTextReader
     {
         /// <summary>
         /// Find & print matching results
