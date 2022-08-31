@@ -16,9 +16,10 @@ namespace ParserXML
     /// <summary>
     /// Parsing XML using XML Text Reader
     /// </summary>
-
     class ParserXmlTextReader
     {
+        #region Methods
+
         /// <summary>
         /// Find & print matching results
         /// </summary>
@@ -59,5 +60,7 @@ namespace ParserXML
             }
             return contacts;
         }
+
+        #endregion
     }
 }

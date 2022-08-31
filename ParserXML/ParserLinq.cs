@@ -83,7 +83,8 @@ namespace ParserXML
                            {
                                Name = x.Descendants("Name").First().Value,
                                NetWorth = x.Descendants("NetWorth").First().Value,
-                               Phone = x.Descendants("Phone").First().Value
+                               Phone = x.Descendants("Phone").First().Value,
+                               Phone2 = x.Descendants("Phone").Last().Value
                            };
 
             /// <summary>
@@ -94,7 +95,14 @@ namespace ParserXML
 
                 if (name[1].ToLower().StartsWith(namePart.ToLower()) || name[2].ToLower().StartsWith(namePart.ToLower()))
                 {
-                    Console.WriteLine("Name:" + contact.Name + "\n" + "NetWorth:" + contact.NetWorth + "\n" + "Phone:" + contact.Phone + "\n\n");
+                    Console.WriteLine("Name:" + contact.Name + "\n" +
+                                      "NetWorth:" + contact.NetWorth + "\n" +
+                                      "Phone:" + contact.Phone);
+                    if (contact.Phone != contact.Phone2)
+                    {
+                        Console.WriteLine("Phone:" + contact.Phone2);
+                    }
+                    Console.WriteLine();
                     found++;
                 }
             }
